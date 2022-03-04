@@ -8,8 +8,8 @@ import java.time.LocalDate;
 @NoArgsConstructor
 @Data
 @Builder
-public class FuncionarioResponse {
+public class EmployeeResponse {
     private String id;
-    private String nome;
-    private LocalDate dataNascimento;
+    private String name;
+    private LocalDate birthDate;
 }

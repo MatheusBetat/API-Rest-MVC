@@ -7,7 +7,10 @@ import java.time.Instant;
 
 @Data
 @SuperBuilder
-public class DefalutErrorDetails {
+public class DefaultErrorDetails {
 
-    DefaultErrorDetails
+    private Integer status;
+    private Instant timestamp;
+    private String error;
+    private String message;
 }

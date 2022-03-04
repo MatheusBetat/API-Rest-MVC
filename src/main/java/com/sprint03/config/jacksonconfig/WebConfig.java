@@ -14,11 +14,10 @@ import java.time.format.DateTimeFormatter;
 public class WebConfig implements WebMvcConfigurer {
 
     @Bean
-    public Jackson2ObjectMapperBuilderCustomizer jsonCostumizar(){
+    public Jackson2ObjectMapperBuilderCustomizer jsonCustomize(){
         return builder -> {
             builder.serializers(new LocalDateSerializer(DateTimeFormatter.ISO_LOCAL_DATE));
             builder.deserializers(new LocalDateDeserializer(DateTimeFormatter.ISO_LOCAL_DATE));
         };
     }
-
 }

@@ -1,14 +1,16 @@
 package com.sprint03.model.mapper.response;
 
 import com.sprint03.model.entity.EmployeeEntity;
+import lombok.experimental.UtilityClass;
 
-public class FuncionarioResponseMapper {
+@UtilityClass
+public class EmployeeResponseMapper {
 
-    public static FuncionarioResponse paraFuncionarioResponse(EmployeeEntity employeeEntity){
-        return FuncionarioResponse.builder()
+    public static EmployeeResponse toResponse(EmployeeEntity employeeEntity){
+        return EmployeeResponse.builder()
                 .id(employeeEntity.getId())
-                .nome(employeeEntity.getNome())
-                .dataNascimento(employeeEntity.getDataNascimento())
+                .name(employeeEntity.getName())
+                .birthDate(employeeEntity.getBirthDate())
                 .build();
     }
 

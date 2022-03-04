@@ -1,14 +1,17 @@
 package com.sprint03.model.mapper.request;
 
 import com.sprint03.model.entity.EmployeeEntity;
+import lombok.AccessLevel;
+import lombok.NoArgsConstructor;
+import lombok.experimental.UtilityClass;
 
-public class FuncionarioRequestMapper {
+@UtilityClass
+public class EmployeeRequestMapper {
 
-    public static EmployeeEntity paraEntidadeFuncionaio(FuncionarioRequest serviceRequest){
+    public static EmployeeEntity toEntity(EmployeeRequest serviceRequest){
         return EmployeeEntity.builder()
-                .id(serviceRequest.getId())
-                .nome(serviceRequest.getNome())
-                .dataNascimento(serviceRequest.getDataNascimento())
+                .name(serviceRequest.getName())
+                .birthDate(serviceRequest.getBirthDate())
                 .build();
     }
 

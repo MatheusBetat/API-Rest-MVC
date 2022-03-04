@@ -11,14 +11,12 @@ import java.time.LocalDate;
 @NoArgsConstructor
 @Data
 @Builder
-public class FuncionarioRequest {
+public class EmployeeRequest {
 
-    private String id;
     @NotNull
     @NotBlank()
-    @Size(min = 20, max = 120, message = "Nome entre 20-120 caracteres.")
-    private String nome;
+    @Size(min = 20, max = 120, message = "Name with 20-120 characters.")
+    private String name;
     @NotNull
-    private LocalDate dataNascimento;
+    private LocalDate birthDate;
 }
-//todo ver cenarios q utilizo id no request

@@ -1,5 +1,18 @@
-package com.sprint03.exceptions.details;
+package com.sprint03.exceptions.notfound;
 
-@
-public class HandlerDetails {
+import lombok.Data;
+import lombok.experimental.SuperBuilder;
+
+import java.time.Instant;
+
+
+@SuperBuilder
+@Data
+public class NotFoundDetails {
+
+    private Integer status;
+    private Instant timestamp;
+    private String error;
+    private String message;
+
 }

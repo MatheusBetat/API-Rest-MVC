@@ -1,57 +1,57 @@
 package com.sprint03.service.funcionario;
 
 import com.sprint03.exceptions.notfound.NotFoundException;
-import com.sprint03.model.entity.Funcionario;
-import com.sprint03.model.mapper.request.FuncionarioRequest;
-import com.sprint03.model.mapper.response.FuncionarioResponse;
-import com.sprint03.model.mapper.response.FuncionarioResponseMapper;
-import com.sprint03.repository.FuncionarioRepository;
+import com.sprint03.model.entity.EmployeeEntity;
+import com.sprint03.model.mapper.request.EmployeeRequest;
+import com.sprint03.model.mapper.response.EmployeeResponse;
+import com.sprint03.model.mapper.response.EmployeeResponseMapper;
+import com.sprint03.repository.EmployeeRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
-import static com.sprint03.model.mapper.request.FuncionarioRequestMapper.paraEntidadeFuncionaio;
-import static com.sprint03.model.mapper.response.FuncionarioResponseMapper.paraFuncionarioResponse;
+import static com.sprint03.model.mapper.request.EmployeeRequestMapper.toEntity;
+import static com.sprint03.model.mapper.response.EmployeeResponseMapper.toResponse;
 
 @AllArgsConstructor
 @Service
-public class FuncionarioService {
+public class EmployeeService {
 
-    private final FuncionarioRepository repository;
+    private final EmployeeRepository repository;
 
-    public FuncionarioResponse criaFuncionario(FuncionarioRequest funcionarioRequest){
-            return paraFuncionarioResponse(repository.save(paraEntidadeFuncionaio(funcionarioRequest)));
+    public EmployeeResponse createEmployee(EmployeeRequest employeeRequest){
+            return toResponse(repository.save(toEntity(employeeRequest)));
     }
 
-    public FuncionarioResponse buscaFuncionarioId(String id) {
-        Funcionario funcionario = repository.findById(id)
-                .orElseThrow(() -> new NotFoundException("Não encontrou ID " + id));
-        return paraFuncionarioResponse(funcionario);
+    public EmployeeResponse findEmployeeID(String id) {
+        EmployeeEntity employeeEntity = repository.findById(id)
+                .orElseThrow(() -> new NotFoundException("ID Not Found: " + id));
+        return toResponse(employeeEntity);
     }
 
-    public void deletarFuncionarioPeloId(String id){
+    public void deleteEmployeeID(String id){
         repository.findById(id)
-                .orElseThrow(() -> new NotFoundException("Não encontrou ID " + id));
+                .orElseThrow(() -> new NotFoundException("ID Not Found: " + id));
         repository.deleteById(id);
     }
 
-    public void deletarFuncionariosPelosIds(List<String> ids){
+    public void deleteEmployeesByIDs(List<String> ids){
         repository.deleteAllById(ids);
     }
 
-    public List<FuncionarioResponse> listarFuncionarios(){
+    public List<EmployeeResponse> employees(){
         return repository.findAll().stream()
-                .map(FuncionarioResponseMapper::paraFuncionarioResponse)
+                .map(EmployeeResponseMapper::toResponse)
                 .toList();
     }
 
-    public FuncionarioResponse alterarFuncionarioId(FuncionarioRequest funcionarioRequest, String id) {
-        Funcionario buscado = repository.findById(id).orElseThrow(() -> new NotFoundException("ID não encontrado."));
-        buscado.setNome(funcionarioRequest.getNome());
-        buscado.setDataNascimento(funcionarioRequest.getDataNascimento());
-        Funcionario salvado = repository.save(buscado);
-        return paraFuncionarioResponse(salvado);
+    public EmployeeResponse changeEmployeeByID(EmployeeRequest employeeRequest, String id) {
+        EmployeeEntity found = repository.findById(id).orElseThrow(() -> new NotFoundException("ID Not Found: " + id));
+        found.setName(employeeRequest.getName());
+        found.setBirthDate(employeeRequest.getBirthDate());
+        EmployeeEntity saved = repository.save(found);
+        return toResponse(saved);
     }
 
 }
