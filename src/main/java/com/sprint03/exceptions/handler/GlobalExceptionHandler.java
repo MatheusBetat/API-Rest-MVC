@@ -39,17 +39,19 @@ public class GlobalExceptionHandler {
                 .build();
     }
 
-    @ExceptionHandler(WebExchangeBindException.class)
+    @ExceptionHandler(MethodArgumentNotValidException.class)
     @ResponseStatus(BAD_REQUEST)
-    public BadRequestDetails badRequest(WebExchangeBindException exchangeBindException){
-//        Map<String, String> error = new HashMap<>();
-//        List<FieldError> errorList = exchangeBindException.getBindingResult().getFieldErrors();
-//        errorList.forEach(p -> error.put(p.getField(), p.getDefaultMessage()));
+    public BadRequestDetails badRequest(MethodArgumentNotValidException argumentNotValidException){
+        Map<String, String> error = new HashMap<>();
+        List<FieldError> errorList = argumentNotValidException.getBindingResult().getFieldErrors();
+        errorList.forEach(p -> error.put(p.getField(), p.getDefaultMessage()));
 
         return BadRequestDetails.builder()
-                .timestamp(LocalDateTime.now().truncatedTo(ChronoUnit.SECONDS))
-                .fields(fieldsErrors(exchangeBindException))
-                .developerMessage("Error! Check your request")
+                .status(BAD_REQUEST.value())
+                .title("Invalid Request.")
+                .timestamp(Instant.now())
+                .details(error)
+                .developerMessage("Error! Check for incorrect information.")
                 .build();
     }
 
@@ -72,14 +74,6 @@ public class GlobalExceptionHandler {
                 .timestamp(Instant.now())
                 .message("Method not allowed.")
                 .build();
-    }
-
-    private  List<ErrorObject> fieldsErrors(WebExchangeBindException exchangeBindException){
-        return exchangeBindException.getBindingResult().getFieldErrors().stream()
-                .map(errors -> new ErrorObject((errors.getDefaultMessage()),
-                        errors.getField(),
-                        errors.getRejectedValue()))
-                .collect(Collectors.toList());
     }
 
 }
