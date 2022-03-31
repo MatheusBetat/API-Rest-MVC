@@ -1,4 +1,4 @@
-package com.sprint03.model.mapper.response;
+package com.sprint03.model.mapper.employee.response;
 
 import lombok.*;
 

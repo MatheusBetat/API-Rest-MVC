@@ -1,5 +1,6 @@
-package com.sprint03.model.mapper.request;
+package com.sprint03.model.mapper.employee.request;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.*;
 
 import javax.validation.constraints.NotBlank;
@@ -18,5 +19,6 @@ public class EmployeeRequest {
     @Size(min = 20, max = 120, message = "Name with 20-120 characters.")
     private String name;
     @NotNull
+    @JsonFormat(pattern = "dd/MM/yyyy")
     private LocalDate birthDate;
 }

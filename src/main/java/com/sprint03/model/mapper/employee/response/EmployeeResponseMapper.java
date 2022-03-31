@@ -1,4 +1,4 @@
-package com.sprint03.model.mapper.response;
+package com.sprint03.model.mapper.employee.response;
 
 import com.sprint03.model.entity.EmployeeEntity;
 import lombok.experimental.UtilityClass;

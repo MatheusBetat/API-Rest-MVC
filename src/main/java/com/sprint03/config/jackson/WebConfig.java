@@ -1,4 +1,4 @@
-package com.sprint03.config.jacksonconfig;
+package com.sprint03.config.jackson;
 
 import com.fasterxml.jackson.datatype.jsr310.deser.LocalDateDeserializer;
 import com.fasterxml.jackson.datatype.jsr310.ser.LocalDateSerializer;

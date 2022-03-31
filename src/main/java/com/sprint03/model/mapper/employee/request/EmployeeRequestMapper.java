@@ -1,8 +1,6 @@
-package com.sprint03.model.mapper.request;
+package com.sprint03.model.mapper.employee.request;
 
 import com.sprint03.model.entity.EmployeeEntity;
-import lombok.AccessLevel;
-import lombok.NoArgsConstructor;
 import lombok.experimental.UtilityClass;
 
 @UtilityClass

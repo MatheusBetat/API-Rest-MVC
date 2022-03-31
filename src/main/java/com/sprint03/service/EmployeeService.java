@@ -1,18 +1,18 @@
-package com.sprint03.service.funcionario;
+package com.sprint03.service;
 
 import com.sprint03.exceptions.notfound.NotFoundException;
 import com.sprint03.model.entity.EmployeeEntity;
-import com.sprint03.model.mapper.request.EmployeeRequest;
-import com.sprint03.model.mapper.response.EmployeeResponse;
-import com.sprint03.model.mapper.response.EmployeeResponseMapper;
+import com.sprint03.model.mapper.employee.request.EmployeeRequest;
+import com.sprint03.model.mapper.employee.response.EmployeeResponse;
+import com.sprint03.model.mapper.employee.response.EmployeeResponseMapper;
 import com.sprint03.repository.EmployeeRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
-import static com.sprint03.model.mapper.request.EmployeeRequestMapper.toEntity;
-import static com.sprint03.model.mapper.response.EmployeeResponseMapper.toResponse;
+import static com.sprint03.model.mapper.employee.request.EmployeeRequestMapper.toEntity;
+import static com.sprint03.model.mapper.employee.response.EmployeeResponseMapper.toResponse;
 
 @AllArgsConstructor
 @Service
