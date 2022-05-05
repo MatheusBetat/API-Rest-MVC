@@ -8,7 +8,6 @@ import com.sprint03.model.mapper.employee.response.EmployeeResponseMapper;
 import com.sprint03.repository.EmployeeRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
-
 import java.util.List;
 
 import static com.sprint03.model.mapper.employee.request.EmployeeRequestMapper.toEntity;
@@ -52,6 +51,6 @@ public class EmployeeService {
         found.setBirthDate(employeeRequest.getBirthDate());
         EmployeeEntity saved = repository.save(found);
         return toResponse(saved);
-    }
 
+    }
 }
