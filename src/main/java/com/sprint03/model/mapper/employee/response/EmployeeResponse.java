@@ -9,6 +9,7 @@ import java.time.LocalDate;
 @Data
 @Builder
 public class EmployeeResponse {
+
     private String id;
     private String name;
     private LocalDate birthDate;

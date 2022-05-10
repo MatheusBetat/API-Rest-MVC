@@ -1,5 +1,6 @@
 package com.sprint03.integration.resttemplate;
 
+import com.sprint03.exceptions.handler.ErroHandler;
 import org.springframework.boot.web.client.RestTemplateBuilder;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -13,6 +14,7 @@ public class RestTemplateConfig {
         return new RestTemplateBuilder()
                 .rootUri("https://shazam.p.rapidapi.com")
                 .defaultHeader("x-rapidapi-host", "moviesdb5.p.rapidapi.com")
+                .errorHandler(new ErroHandler())
                 .defaultHeader("x-rapidapi-key", "c313495212msh61074658381b602p118932jsn79f0a21a8167")
                 .build();
 

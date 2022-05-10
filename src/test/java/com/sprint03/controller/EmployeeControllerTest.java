@@ -46,7 +46,7 @@ class EmployeeControllerTest {
                 .when(this.service).employees();
 
         List<EmployeeResponse> actual = this.controller.showAllEmployee();
-        //Assertions.assertNotNull(actual);
+
         Assertions.assertEquals(expect, actual);
 
         Mockito.verify(this.service, Mockito.atLeastOnce()).employees();
