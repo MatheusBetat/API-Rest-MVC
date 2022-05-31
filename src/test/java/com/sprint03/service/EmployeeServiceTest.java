@@ -96,7 +96,7 @@ class EmployeeServiceTest {
         this.exceptionRule.expect(NotFoundException.class);
         this.exceptionRule.expectMessage("ID Not Found: " + id);
 
-        //Assertions.assertThrows(NotFoundException.class, () -> this.service.findEmployeeID(id));
+        Assertions.assertThrows(NotFoundException.class, () -> this.service.findEmployeeID(id));
 
         //this.service.findEmployeeID(id);
 

@@ -57,16 +57,13 @@ class MoviedbControllerTest {
                 .thenReturn(movie);
 
         ObjectMapper mapper = new ObjectMapper();
-        mapper.configure(SerializationFeature.WRAP_ROOT_VALUE, false);
-
-        ObjectWriter objectWriter = mapper.writer().withDefaultPrettyPrinter();
-        String jsonResponse= objectWriter.writeValueAsString(movie);
+        String jsonResponse= mapper.writeValueAsString(movie);
 
         mockMvc.perform(MockMvcRequestBuilders.get("http://localhost:8080/v1/moviedb?moviedbRequest=The Avengers"))
                 .andExpect(status().isOk())
                 .andExpect(content().json(jsonResponse));
 
-        Assertions.assertEquals(title.getTitle(), movie.getTitle());
+        //Assertions.assertEquals(title.getTitle(), movie.getTitle());
 
     }
 
@@ -85,10 +82,7 @@ class MoviedbControllerTest {
                 .thenReturn(movies);
 
         ObjectMapper mapper = new ObjectMapper();
-        mapper.configure(SerializationFeature.WRAP_ROOT_VALUE, false);
-
-        ObjectWriter objectWriter = mapper.writer().withDefaultPrettyPrinter();
-        String jsonResponse= objectWriter.writeValueAsString(movies);
+        String jsonResponse= mapper.writeValueAsString(movies);
 
         mockMvc.perform(MockMvcRequestBuilders.get("http://localhost:8080/v1/moviedb/movies"))
                 .andExpect(status().isOk())
