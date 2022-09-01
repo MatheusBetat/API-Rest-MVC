@@ -10,10 +10,12 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.junit.rules.ExpectedException;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.Mockito;
+import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.boot.test.context.SpringBootTest;
 
 import java.time.LocalDate;
@@ -25,17 +27,13 @@ import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 import static org.mockito.Mockito.*;
 
 //@RunWith(MockitoJUnitRunner.class)
-@SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
+@ExtendWith(MockitoExtension.class)
 class EmployeeServiceTest {
 
     @InjectMocks
     private EmployeeService service;
-
     @Mock
     private EmployeeRepository repository;
-
-    @Rule
-    public ExpectedException exceptionRule = ExpectedException.none();
 
     @Test
     @DisplayName("Deve criar um funcionario com sucesso.")
@@ -79,28 +77,6 @@ class EmployeeServiceTest {
 
         Mockito.verify(this.repository, Mockito.atLeastOnce()).findById(id);
 
-    }
-
-    @Test
-    @Disabled
-    void shouldNotShowEmployeeByInvalidId() throws NotFoundException {
-
-        String id = null;
-
-        EmployeeEntity expect =
-                new EmployeeEntity("1", "Matheus Goulart Betat", LocalDate.parse("1997-04-10"));
-
-        doThrow(NotFoundException.class)
-                .when(this.repository).findById(id);
-
-        this.exceptionRule.expect(NotFoundException.class);
-        this.exceptionRule.expectMessage("ID Not Found: " + id);
-
-        Assertions.assertThrows(NotFoundException.class, () -> this.service.findEmployeeID(id));
-
-        //this.service.findEmployeeID(id);
-
-        Mockito.verify(this.repository, Mockito.atLeastOnce()).findById(id);
     }
 
     @Test

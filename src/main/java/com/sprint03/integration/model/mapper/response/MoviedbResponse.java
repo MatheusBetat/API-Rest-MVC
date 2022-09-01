@@ -29,4 +29,6 @@ public class MoviedbResponse {
     @JsonProperty("Type")
     private String type;
 
+    @JsonProperty("Poster")
+    private String poster;
 }

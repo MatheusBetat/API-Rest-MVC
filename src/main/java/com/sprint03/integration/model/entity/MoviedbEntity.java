@@ -21,5 +21,6 @@ public class MoviedbEntity {
     private String year;
     private String description;
     private String type;
+    private String poster;
 
 }

@@ -13,6 +13,7 @@ public class MoviedbResponseMapper {
                 .description(moviedbResponse.getPlot())
                 .year(moviedbResponse.getYear())
                 .type(moviedbResponse.getType())
+                .poster(moviedbResponse.getPoster())
                 .build();
 
     }
@@ -24,6 +25,7 @@ public class MoviedbResponseMapper {
                 .plot(moviedbEntity.getDescription())
                 .year(moviedbEntity.getYear())
                 .type(moviedbEntity.getType())
+                .poster(moviedbEntity.getPoster())
                 .build();
     }
 }

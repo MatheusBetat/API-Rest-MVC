@@ -8,10 +8,12 @@ import org.junit.Rule;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.junit.rules.ExpectedException;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.Mockito;
+import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.boot.test.context.SpringBootTest;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -24,17 +26,14 @@ import static org.mockito.Mockito.*;
 
 //@DirtiesContext
 //@RunWith(SpringRunner.class)
-@SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
+//@SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
+@ExtendWith(MockitoExtension.class)
 class EmployeeControllerTest {
 
     @InjectMocks
     private EmployeeController controller;
-
     @Mock
     private EmployeeService service;
-
-    @Rule
-    public ExpectedException exceptionRule = ExpectedException.none();
 
     @Test
     @DisplayName("Deve procurar todos funcionarios com sucesso.")
@@ -74,22 +73,6 @@ class EmployeeControllerTest {
         Assertions.assertEquals(expect.getName(), actual.getName());
 
         Mockito.verify(this.service, Mockito.atLeastOnce()).findEmployeeID(id);
-    }
-
-    @Test
-    void shouldNotShowEmployeeByInvalidId() throws NotFoundException {
-
-        String id = null;
-        //this.exceptionRule.expect(NotFoundException.class);
-        this.exceptionRule.expectMessage("ID Not Found: " + id);
-
-        doThrow(NotFoundException.class)
-                .when(this.service).findEmployeeID(id);
-
-        Assertions.assertThrows(NotFoundException.class, () -> this.service.findEmployeeID(id));
-        //this.controller.showEmployeeByID(id);
-        //Mockito.verify(this.service, Mockito.atLeastOnce()).findEmployeeID(id);
-
     }
 
     @Test
